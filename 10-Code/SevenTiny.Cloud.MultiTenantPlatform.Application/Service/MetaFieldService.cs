@@ -13,6 +13,9 @@ namespace SevenTiny.Cloud.MultiTenantPlatform.Application.Service
         {
             this._metaFieldRepository = metaFieldRepository;
         }
+
+        //下面这个逻辑应该放在Domain层
+
         /// <summary>
         /// 为MetaObject添加默认字段
         /// </summary>

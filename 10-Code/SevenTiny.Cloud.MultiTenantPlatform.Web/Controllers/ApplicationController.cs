@@ -64,7 +64,6 @@ namespace SevenTiny.Cloud.MultiTenantPlatform.Web.Controllers
         {
             var application = _applicationRepository.GetEntity(t => t.Id == id);
             return View(new ActionResultModel<DomainModel.Entities.Application>(true, string.Empty, application));
-
         }
 
         public IActionResult UpdateLogic(DomainModel.Entities.Application application)

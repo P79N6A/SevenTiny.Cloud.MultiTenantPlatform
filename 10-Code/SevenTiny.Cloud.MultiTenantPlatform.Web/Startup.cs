@@ -22,8 +22,8 @@ namespace SevenTiny.Cloud.MultiTenantPlatform.Web
             //session support
             services.AddDistributedMemoryCache();
             services.AddSession();
-            //DI,可以选择使用哪种方式进行注入
-            services = ServiceInjector.NetCoreInject(services);
+            //DI
+            services.InjectWeb();
             //end 7tiny ---
 
             services.AddMvc(options =>
