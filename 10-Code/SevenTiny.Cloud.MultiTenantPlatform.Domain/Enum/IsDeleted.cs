@@ -8,7 +8,7 @@
         /// <summary>
         /// 未删除
         /// </summary>
-        NotDeleted = 0,
+        UnDeleted = 0,
         /// <summary>
         /// 已删除
         /// </summary>
