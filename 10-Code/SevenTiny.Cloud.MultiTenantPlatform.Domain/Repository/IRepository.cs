@@ -7,7 +7,7 @@ namespace SevenTiny.Cloud.MultiTenantPlatform.Domain.Repository
         List<T> GetEntitiesDeleted();
         List<T> GetEntitiesUnDeleted();
         void Add(T t);
-        T Get(int id);
+        T GetById(int id);
         void Update(T t);
         void LogicDelete(int id);
         void Recover(int id);

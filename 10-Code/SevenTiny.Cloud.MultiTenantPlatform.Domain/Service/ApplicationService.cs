@@ -27,7 +27,7 @@ namespace SevenTiny.Cloud.MultiTenantPlatform.Domain.Service
         public void Add(Application application)
             => dbContext.Add(application);
 
-        public Application Get(int id)
+        public Application GetById(int id)
             => dbContext.QueryOne<Application>(t => t.Id == id);
 
         public bool ExistForSameNameAndNotSameId(string name, int id)
@@ -35,7 +35,7 @@ namespace SevenTiny.Cloud.MultiTenantPlatform.Domain.Service
 
         public void Update(Application application)
         {
-            var app = Get(application.Id);
+            var app = GetById(application.Id);
             if (app != null)
             {
                 app.Name = application.Name;
@@ -52,7 +52,7 @@ namespace SevenTiny.Cloud.MultiTenantPlatform.Domain.Service
 
         public void LogicDelete(int id)
         {
-            var entity = Get(id);
+            var entity = GetById(id);
             if (entity != null)
             {
                 entity.IsDeleted = (int)IsDeleted.Deleted;
@@ -62,12 +62,15 @@ namespace SevenTiny.Cloud.MultiTenantPlatform.Domain.Service
 
         public void Recover(int id)
         {
-            var entity = Get(id);
+            var entity = GetById(id);
             if (entity != null)
             {
                 entity.IsDeleted = (int)IsDeleted.UnDeleted;
                 dbContext.Update(t => t.Id == id, entity);
             }
         }
+
+        public Application GetByCode(string code)
+            => dbContext.QueryOne<Application>(t => t.Code.Equals(code));
     }
 }

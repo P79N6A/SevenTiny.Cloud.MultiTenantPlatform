@@ -7,5 +7,6 @@ namespace SevenTiny.Cloud.MultiTenantPlatform.Domain.ServiceContract
     {
         bool ExistForSameName(string name);
         bool ExistForSameNameAndNotSameId(string name, int id);
+        Application GetByCode(string code);
     }
 }

@@ -59,7 +59,7 @@ namespace SevenTiny.Cloud.MultiTenantPlatform.Web.Controllers
 
         public IActionResult Update(int id)
         {
-            var application = applicationService.Get(id);
+            var application = applicationService.GetById(id);
             return View(ResponseModel.Success(application));
         }
 
