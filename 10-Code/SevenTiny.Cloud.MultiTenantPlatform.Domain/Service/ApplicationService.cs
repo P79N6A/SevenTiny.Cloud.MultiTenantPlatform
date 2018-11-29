@@ -3,7 +3,6 @@ using SevenTiny.Cloud.MultiTenantPlatform.Domain.Enum;
 using SevenTiny.Cloud.MultiTenantPlatform.Domain.ServiceContract;
 using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace SevenTiny.Cloud.MultiTenantPlatform.Domain.Service
 {
@@ -16,10 +15,10 @@ namespace SevenTiny.Cloud.MultiTenantPlatform.Domain.Service
 
         MultiTenantPlatformDbContext dbContext;
 
-        public List<Application> GetApplicationsDeleted()
+        public List<Application> GetEntitiesDeleted()
             => dbContext.QueryList<Application>(t => t.IsDeleted == (int)IsDeleted.Deleted);
 
-        public List<Application> GetApplicationsUnDeleted()
+        public List<Application> GetEntitiesUnDeleted()
             => dbContext.QueryList<Application>(t => t.IsDeleted == (int)IsDeleted.UnDeleted);
 
         public bool ExistForSameName(string name)
@@ -28,7 +27,7 @@ namespace SevenTiny.Cloud.MultiTenantPlatform.Domain.Service
         public void Add(Application application)
             => dbContext.Add(application);
 
-        public Application GetById(int id)
+        public Application Get(int id)
             => dbContext.QueryOne<Application>(t => t.Id == id);
 
         public bool ExistForSameNameAndNotSameId(string name, int id)
@@ -36,7 +35,7 @@ namespace SevenTiny.Cloud.MultiTenantPlatform.Domain.Service
 
         public void Update(Application application)
         {
-            var app = GetById(application.Id);
+            var app = Get(application.Id);
             if (app != null)
             {
                 app.Name = application.Name;
@@ -46,13 +45,14 @@ namespace SevenTiny.Cloud.MultiTenantPlatform.Domain.Service
                 app.Description = application.Description;
                 app.ModifyBy = -1;
                 app.ModifyTime = DateTime.Now;
+
+                dbContext.Update(t => t.Id == application.Id, app);
             }
-            dbContext.Update(t => t.Id == application.Id, app);
         }
 
         public void LogicDelete(int id)
         {
-            var entity = GetById(id);
+            var entity = Get(id);
             if (entity != null)
             {
                 entity.IsDeleted = (int)IsDeleted.Deleted;
@@ -62,7 +62,7 @@ namespace SevenTiny.Cloud.MultiTenantPlatform.Domain.Service
 
         public void Recover(int id)
         {
-            var entity = GetById(id);
+            var entity = Get(id);
             if (entity != null)
             {
                 entity.IsDeleted = (int)IsDeleted.UnDeleted;

@@ -15,19 +15,19 @@ namespace SevenTiny.Cloud.MultiTenantPlatform.Web.Controllers
 
         public IActionResult Select()
         {
-            var list = applicationService.GetApplicationsUnDeleted();
+            var list = applicationService.GetEntitiesUnDeleted();
             return View(list);
         }
 
         public IActionResult List()
         {
-            var list = applicationService.GetApplicationsUnDeleted();
+            var list = applicationService.GetEntitiesUnDeleted();
             return View(list);
         }
 
         public IActionResult DeleteList()
         {
-            var list = applicationService.GetApplicationsDeleted();
+            var list = applicationService.GetEntitiesDeleted();
             return View(list);
         }
 
@@ -59,7 +59,7 @@ namespace SevenTiny.Cloud.MultiTenantPlatform.Web.Controllers
 
         public IActionResult Update(int id)
         {
-            var application = applicationService.GetById(id);
+            var application = applicationService.Get(id);
             return View(ResponseModel.Success(application));
         }
 
