@@ -2,14 +2,16 @@
 
 namespace SevenTiny.Cloud.MultiTenantPlatform.Domain.Repository
 {
-    public interface IRepository<T> where T : class
+    public interface IRepository<TEntity> where TEntity : class
     {
-        List<T> GetEntitiesDeleted();
-        List<T> GetEntitiesUnDeleted();
-        void Add(T t);
-        T GetById(int id);
-        void Update(T t);
+        void Add(TEntity entity);
+        void Update(TEntity entity);
+        void Delete(int id);
         void LogicDelete(int id);
         void Recover(int id);
+        TEntity GetById(int id);
+        TEntity GetByCode(string code);
+        List<TEntity> GetEntitiesDeleted();
+        List<TEntity> GetEntitiesUnDeleted();
     }
 }

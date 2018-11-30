@@ -1,6 +1,5 @@
-﻿using SevenTiny.Bantina.Bankinate;
+﻿using SevenTiny.Bantina.Bankinate.Attributes;
 using System;
-using SevenTiny.Bantina.Bankinate.Attributes;
 
 namespace SevenTiny.Cloud.MultiTenantPlatform.Domain.Entity
 {
