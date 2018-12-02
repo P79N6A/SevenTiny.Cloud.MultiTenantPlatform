@@ -45,7 +45,6 @@ namespace SevenTiny.Cloud.MultiTenantPlatform.Web
                 app.UseExceptionHandler("/Home/Error");
             }
 
-
             //start 7tiny ---
             //session support
             app.UseSession();

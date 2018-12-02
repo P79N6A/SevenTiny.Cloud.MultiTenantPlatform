@@ -30,9 +30,13 @@ namespace SevenTiny.Cloud.MultiTenantPlatform.Web.Controllers
                 return Redirect("/Application/Select");
             }
             var application = applicationService.GetByCode(app);
+
             HttpContext.Session.SetInt32("ApplicationId", application.Id);
+            HttpContext.Session.SetString("ApplicationCode", application.Code);
+
             ViewData["Application"] = app;
             ViewData["MetaObjects"] = metaObjectService.GetMetaObjectsUnDeletedByApplicationId(application.Id);
+
             return View();
         }
 

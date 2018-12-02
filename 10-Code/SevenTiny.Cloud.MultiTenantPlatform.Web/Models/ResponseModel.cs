@@ -1,4 +1,6 @@
-﻿namespace SevenTiny.Cloud.MultiTenantPlatform.Web.Models
+﻿using SevenTiny.Cloud.MultiTenantPlatform.Application.ValueObject;
+
+namespace SevenTiny.Cloud.MultiTenantPlatform.Web.Models
 {
     public class ResponseModel
     {
@@ -20,5 +22,17 @@
 
         public static ResponseModel Error(string message, object data = null)
             => new ResponseModel { IsSuccess = false, Message = message, Data = data };
+    }
+
+    public static class ResponseModelExtension
+    {
+        public static ResponseModel ToResponseModel(this ResultModel resultModel)
+            =>
+            new ResponseModel
+            {
+                IsSuccess = resultModel.IsSuccess,
+                Message = resultModel.Message,
+                Data = resultModel.Data
+            };
     }
 }

@@ -37,5 +37,7 @@ namespace SevenTiny.Cloud.MultiTenantPlatform.Domain.Service
                 dbContext.Update(t => t.Id == application.Id, app);
             }
         }
+
+        public new void Delete(int id) { }
     }
 }

@@ -9,6 +9,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="SevenTiny.Bantina" Version="1.0.5" />
     <PackageReference Include="SevenTiny.Bantina.Bankinate" Version="1.0.39" />
   </ItemGroup>
 
